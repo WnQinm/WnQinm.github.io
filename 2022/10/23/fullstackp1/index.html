@@ -1,0 +1,310 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>part 1: React 入门 | Qinm's blog</title><meta name="author" content="WnQinm"><meta name="copyright" content="WnQinm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="part 1 notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="part 1: React 入门">
+<meta property="og:url" content="http://wnqinm.cn/2022/10/23/fullstackp1/index.html">
+<meta property="og:site_name" content="Qinm&#39;s blog">
+<meta property="og:description" content="part 1 notes">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-23T15:52:31.000Z">
+<meta property="article:modified_time" content="2022-11-22T05:36:01.578Z">
+<meta property="article:author" content="WnQinm">
+<meta property="article:tag" content="net">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://wnqinm.cn/2022/10/23/fullstackp1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Acme&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"bottom","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'part 1: React 入门',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-22 13:36:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Qinm's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">part 1: React 入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-23T15:52:31.000Z" title="发表于 2022-10-23 23:52:31">2022-10-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-22T05:36:01.578Z" title="更新于 2022-11-22 13:36:01">2022-11-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%8E%B0%E4%BB%A3Web%E7%BC%96%E7%A8%8B-%E5%85%A8%E6%A0%88%E5%85%AC%E5%BC%80%E8%AF%BE-2022/">深入浅出现代Web编程 全栈公开课 2022</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.4k</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>React 简介</h1>
+<p>  开始需要node环境了，我这里是使用docker进行接下来的学习，这里顺带记录一下大致过程</p>
+<p>  pull node相关镜像，我这里</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull node:18-buster</span><br></pre></td></tr></table></figure>
+<br>
+<p>  然后启动一个容器：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name fullstack -p 3000:3000 -it fullstack /bin/bash</span><br></pre></td></tr></table></figure>
+<p>  这里我还在内网暴露了3000端口（防火墙没开，被挖过一次矿之后开防火墙就十分谨慎了【悲】），但是后来发现利用vscode可以不通过公网访问在容器中临时部署的页面（vscode会弹窗提示，然后open即可）</p>
+<br>
+<p>  回归主线，根据教程利用<code>create-react-app</code>工具制作一个简单的React应用：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /home/node # 下面这行代码会在当前目录生成文件夹，防止混乱cd到主目录</span><br><span class="line">npx create-react-app part1</span><br></pre></td></tr></table></figure>
+<p>  然后会开始安装不知道什么东西，不过很快报错<code>permission denied</code>，奇怪不知道为什么root身份下还会遇到权限问题，发现现在所在的目录<code>/home/node</code>拥有者是node，所以<code>su node</code>切一下身份，成功运行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd part1</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<br>
+<p>  接下来让修改文件，突然想起来vscode不能直接操作容器内的文件，但是众所周知vscode什么也能做，搜了一下，安装docker插件即可。</p>
+<p>  我这里是使用remote-ssh插件连接远程服务器操作的，安装插件的时候超级慢，又搜了一下，可以通过vscode网站的extensions页面下载vsix后缀的安装包，ftp传到服务器，vscode插件处右上角三个点的<code>install from vsix</code>安装即可</p>
+<br>
+<p>  安装好后问题又来了，插件不能识别到容器和镜像（报错<code>connect EACCES /var/run/docker.sock</code>），搜索资料后是因为docker没权限（在此之前我的Ubuntu系统使用docker命令必须加sudo），<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/linux-postinstall/">需要将当前用户添加至docker用户组</a>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd docker</span><br><span class="line">sudo usermod -aG docker $USER</span><br><span class="line">newgrp docker</span><br></pre></td></tr></table></figure>
+<p>  这时就可以发现能正常直接使用docker命令了，不需要sudo了，但是还是需要在控制台重启服务器，不然vscode还是报错（<strong>这里将vscode断开连接重连是不行的，需要在控制台将服务器重启</strong>）</p>
+<br>
+<p><strong>简化代码</strong>：</p>
+<p>对于<code>/src/index.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom/client&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>)).<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>)</span><br></pre></td></tr></table></figure>
+<p>对于<code>App.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span></span><br></pre></td></tr></table></figure>
+<p>删除 App.css, App.test.js, index.css, logo.svg, setupTests.js 和 reportWebVitals.js 文件</p>
+<br>
+<h2 id="组件-Component">组件-Component</h2>
+<p>App.js现在定义了一个名为App的<a target="_blank" rel="noopener" href="https://zh-hans.reactjs.org/docs/components-and-props.html">React组件</a>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>)).<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>)</span><br></pre></td></tr></table></figure>
+<p>将该组件内容渲染到div-元素中，该元素在<code>public/index.html</code>中定义</p>
+<br>
+<p>再来看一下定义组件的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>它被渲染成一个div-标签，包裹着一个p-标签</p>
+<p>该组件被定义为一个JavaScript函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">() =&gt; (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>然后这个函数被分配给一个常量变量App</p>
+<br>
+<p>有几种方法可以在JavaScript中定义函数，这里使用的是<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions">箭头函数</a>，在较新的JavaScript版本中被描述为<a target="_blank" rel="noopener" href="http://es6-features.org/#Constants">ECMAScript 6</a>，也称为ES6</p>
+<p>这里用了简写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(param1, param2, …, paramN) =&gt; expression</span><br><span class="line"><span class="comment">//相当于：(param1, param2, …, paramN) =&gt;&#123; return expression; &#125;</span></span><br></pre></td></tr></table></figure>
+<br>
+<p>定义该组件的函数可以包含任意的js代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello from component&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以在一个组件内渲染动态内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> now = <span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="keyword">const</span> a = <span class="number">10</span></span><br><span class="line">  <span class="keyword">const</span> b = <span class="number">20</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world, it is &#123;now.toString()&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;a&#125; plus &#123;b&#125; is &#123;a + b&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大括号内的js代码会被计算，然后嵌入到组件产生的HTML中的定义位置</p>
+<br>
+<h2 id="JSX">JSX</h2>
+<p>  主观来看React组件返回了一个HTML标记，但是事实上React组件的布局大多是用<a target="_blank" rel="noopener" href="https://reactjs.org/docs/introducing-jsx.html">JSX</a>编写的。虽然JSX很像是HTML，但其实我们在处理一种写JS的方式。底层上，由React组件返回的JSX 被编译成JS。</p>
+<p>  编译后如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> now = <span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="keyword">const</span> a = <span class="number">10</span></span><br><span class="line">  <span class="keyword">const</span> b = <span class="number">20</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">    <span class="string">&#x27;div&#x27;</span>,</span><br><span class="line">    <span class="literal">null</span>,</span><br><span class="line">    <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">      <span class="string">&#x27;p&#x27;</span>, <span class="literal">null</span>, <span class="string">&#x27;Hello world, it is &#x27;</span>, now.<span class="title function_">toString</span>()</span><br><span class="line">    ),</span><br><span class="line">    <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">      <span class="string">&#x27;p&#x27;</span>, <span class="literal">null</span>, a, <span class="string">&#x27; plus&#x27;</span>, b, <span class="string">&#x27; is &#x27;</span>, a+b</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  编译是由<a target="_blank" rel="noopener" href="https://babeljs.io/repl/">Babel</a>处理的。用<code>create-react-app</code>创建的项目会被配置为自动编译。</p>
+<p>  可以把React写成类似上面的“纯JS”而不使用JSX，但是会很麻烦。</p>
+<p>  JSX很像HTML，区别在于JSX可以通过在大括号内编写适当的JS代码来嵌入动态内容。</p>
+<p>  JSX是“XML-like”语言，这意味着所有标签必须闭合。譬如换行标签：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--HTML--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--JSX--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<br>
+<h2 id="多个组件-Multiple-components">多个组件-Multiple components</h2>
+<p>  修改文件 App.js 如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">Hello</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Greeting<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Hello</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+<br>
+<p>  这里定义了一个新组件 Hello，并在组件 App 中使用它。一个组件也可以被多次使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Greeting<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Hello</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Hello</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Hello</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<p>  通过组合组件，即使是比较复杂的应用也可以保持相当的可维护性。事实上React的一个核心理念就是由许多专门的可重复使用的组件组成应用。</p>
+<p>  另一个强制的惯例是在应用的组件树的顶端有一个叫做App的根组件。然而有些情况下，组件的App并不完全是根，而是被包裹在一个适当的实用组件中。</p>
+<br>
+<h2 id="参数-props-passing-data-to-components">参数-props: passing data to components</h2>
+<p>  可以使用所谓的<a target="_blank" rel="noopener" href="https://zh-hans.reactjs.org/docs/components-and-props.html">props</a>向组件传递数据。</p>
+<p>  对组件Hello做如下修改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">Hello</span> = (<span class="params">props</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello &#123;props.name&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  现在定义组件的函数有一个参数props。该参数接收一个对象，该对象有对应于组件用户定义的所有“props”的字段。</p>
+<p>  App组件修改如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Greeting<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Hello</span> <span class="attr">name</span>=<span class="string">&quot;George&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Hello</span> <span class="attr">name</span>=<span class="string">&quot;Daisy&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  可以有任意数量的prop，它们的值可以是“硬编码”的字符串或JS表达式的结果。如果prop的值是用JS实现的，必须用大括号包裹起来。</p>
+<br>
+<p>  修改代码，让组件Hello使用两个props：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">Hello</span> = (<span class="params">props</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        Hello &#123;props.name&#125;, you are &#123;props.age&#125; years old</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> name = <span class="string">&#x27;Peter&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> age = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Greetings<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Hello</span> <span class="attr">name</span>=<span class="string">&quot;Maya&quot;</span> <span class="attr">age</span>=<span class="string">&#123;26</span> + <span class="attr">10</span>&#125; /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Hello</span> <span class="attr">name</span>=<span class="string">&#123;name&#125;</span> <span class="attr">age</span>=<span class="string">&#123;age&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  类似于每定义了一个Hello标签，就会定义一个对应的对象，这个对象会作为实参传入组件内部，标签的属性翻译成了这个对象的属性。</p>
+<h2 id="一些提示-Some-notes">一些提示-Some notes</h2>
+<ul>
+<li>React已经能生成相当清晰的错误信息。尽管如此，还是建议每次修改只改动一点，以保证每次改变都是顺利的。</li>
+</ul>
+<br>
+<ul>
+<li>控制台应时刻打开，以监视错误以及了解错误原因。</li>
+</ul>
+<br>
+<ul>
+<li>类似于python的print调试大法，在React中也可以使用<code>console.log()</code>进行调试。</li>
+</ul>
+<br>
+<ul>
+<li>
+<p><strong>React的组件名称必须首字母大写</strong>，否则会报错：</p>
+<p>如果尝试用以下方式定义一个组件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">footer</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    greeting app created by <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://github.com/WnQinm&quot;</span>&gt;</span>WnQinm<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>并这样使用它：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;Peter&#x27;</span></span><br><span class="line"><span class="keyword">const</span> age = <span class="number">18</span></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Greeting<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">Hello</span> <span class="attr">name</span>=<span class="string">&quot;George&quot;</span> <span class="attr">age</span>=<span class="string">&#123;1+2&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">Hello</span> <span class="attr">name</span>=<span class="string">&#123;name&#125;</span> <span class="attr">age</span>=<span class="string">&#123;age&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">footer</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>React 只会创建一个空的footer元素，即内置的HTML元素，而不是同名的自定义的React元素。如果吧组件名称的第一个字母改为大写字母，那么React就会创建一个定义在Footer组件中的div元素，并在页面渲染。</p>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>注意，React组件的内容通常需要包含一个根元素。例如，如果我们试图定义组件App而不使用最外层的div元素。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Greeting<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Hello</span> <span class="attr">name</span>=<span class="string">&quot;George&quot;</span> <span class="attr">age</span>=<span class="string">&#123;1+2&#125;</span> /&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Footer</span> /&gt;</span></span></span><br><span class="line">)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>页面就会返回错误信息：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007Z9xVHgy1h7mo9iqojqj30xs0h30yd.jpg" alt="fullstack_somenotes"></p>
+<p>使用根元素不是唯一的选择。一个组件的array也是一个解决方案：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Greeting<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>,</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Hello</span> <span class="attr">name</span>=<span class="string">&quot;George&quot;</span> <span class="attr">age</span>=<span class="string">&#123;1+2&#125;</span> /&gt;</span></span>,</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Footer</span> /&gt;</span></span></span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是这样会使得代码有些难看。</p>
+<p>由于根元素被强制规定必须有div了，我可在DOM树中有“额外的”div-elements。这可以通过使用<a target="_blank" rel="noopener" href="https://reactjs.org/docs/fragments.html#short-syntax">fragments</a>来避免，即用一个空元素来包装组件要返回的元素：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Greeting<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">Hello</span> <span class="attr">name</span>=<span class="string">&quot;George&quot;</span> <span class="attr">age</span>=<span class="string">&#123;1+2&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">Footer</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1>JavaScript</h1>
+<p>  这个课程使用了较新的JS版本的功能。JavaScript标准的官方名称是<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a>。</p>
+<p>  浏览器还不支持JS的所有最新功能。由于这个事实，很多浏览器中运行的代码都是从较新版本的JS转写成较旧的、更兼容的版本。</p>
+<p>  如今最流行的方式是通过使用<a target="_blank" rel="noopener" href="https://babeljs.io/">Babel</a>进行转码。在用create-react-app创建的React应用中，转移是自动配置的。</p>
+<p>  <a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a>是一个基于Google’s <a target="_blank" rel="noopener" href="https://developers.google.com/v8/">Chrome V8</a> JavaScript引擎的JS运行环境，几乎可以在任何地方工作（从服务器到手机应用）。如果机器上安装的Node.js版本&gt;=16.13.2，那么Node可以理解最新版本的JS代码，代码不需要转码。<strong>（2022.11.5）</strong></p>
+<p>  代码被写入以<code>.js</code>结尾的文件中，通过键入<code>node name_of_file.js</code>命令来运行。</p>
+<p>  也可以将JS代码写入Node.js控制台，该控制台可以通过在命令行输入node打开，也可以写入浏览器的开发者工具控制台（比如Chrome、Firefox）。</p>
+<h2 id="变量-Variables">变量-Variables</h2>
+<p>  在JS中，有几种方法来定义变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> y = <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x,y)</span><br><span class="line">y += <span class="number">10</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x,y)</span><br><span class="line">y = <span class="string">&#x27;sometext&#x27;</span></span><br><span class="line">consolek.<span class="title function_">log</span>(x,y)</span><br><span class="line">x = <span class="number">4</span>                 <span class="comment">// cause an error</span></span><br></pre></td></tr></table></figure>
+<p>  const定义一个常量，let定义了一个普通变量。而且分配给变量的数据类型可以改变。</p>
+<p>  还有一种使用var来定义变量的方法，在之前的很长一段时间内，var是定义变量的位移方法。详情参见<a target="_blank" rel="noopener" href="https://medium.com/craft-academy/javascript-variables-should-you-use-let-var-or-const-394f7645c88f">JavaScript变量–你应该使用let、var还是const? on Medium</a>或<a target="_blank" rel="noopener" href="http://www.jstips.co/en/javascript/keyword-var-vs-let/">关键词：var vs. let on JS Tips</a>，YouTube上也有相关视频：<a target="_blank" rel="noopener" href="https://youtu.be/sjyJBL5fkp8">var, let and const - ES6 JavaScript Features</a>。此课程建议全程使用const和let。</p>
+<h2 id="数组Arrays">数组Arrays</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> t = [<span class="number">1</span>,-<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">t.<span class="title function_">push</span>(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(t.<span class="property">length</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(t[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">t.<span class="title function_">forEach</span>(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  注意数组的内容可以修改，原因是数组是一个对象，这个变量总是指向同一个对象。然而，数组的内容随着新项目的加入而改变。</p>
+<p>  遍历数组项目的一种方法是使用forEach ，如图所示。forEach接收一个用箭头语法定义的<strong>函数</strong>作为参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">value =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  forEach为数组中的每个项调用函数，总是传递单个项作为参数。作为forEach参数的函数也可以接收其他参数。</p>
+<p>  在前面的例子中，使用方法push将一个新项添加到数组中。在使用React时，经常使用函数式编程的技术。函数式编程范式的一个特点是使用不可变的数据结构。在React代码中，最好使用concat方法，该方法不会将项目添加到数组中，而是创建一个新的数组，其中同时包含旧数组和新项目的内容。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> t = [<span class="number">1</span>,-<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> t2 = t.<span class="title function_">concat</span>(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(t)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(t2)</span><br></pre></td></tr></table></figure>
+<p>  下面是一个使用map方法进行数组定义的例子。</p>
+<p>···js<br>
+const t = [1,2,3]</p>
+<p>const m1 = t.map(value =&gt; value * 2)<br>
+console.log(m1)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&amp;emsp;&amp;emsp;Map也可以将数组转化为完全不同的东西。</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">const m2 = t.map(value =&gt; &#x27;&lt;li&gt;&#x27; + value + &#x27;&lt;/li&gt;&#x27;)</span><br><span class="line">console.log(m2)</span><br><span class="line">// [&#x27;&lt;li&gt;1&lt;/li&gt;&#x27;,&#x27;&lt;li&gt;2&lt;/li&gt;&#x27;,&#x27;&lt;li&gt;3&lt;/li&gt;&#x27;]</span><br></pre></td></tr></table></figure>
+<p>  在这里，一个充满整数值的数组通过map方法被转化为一个包含HTML字符串的数组。在本课程的第二章节中，我们将看到map在React中使用的相当频繁。</p>
+<p>  在解构赋值（类似python）的帮助下，数组中的单个项目很容易被赋值给变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> t = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [first,second,...rest] = t</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(first,second)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(rest)</span><br></pre></td></tr></table></figure>
+<p>  变量first和second以数组前两个整数作为它们的值。其余的整数作为一个数组传入给rest变量。</p>
+<h2 id="对象-Objects">对象-Objects</h2>
+<p>  在JS中，有几种不同的方法来定义对象。一种非常常见的方法是使用对象字面量(字面量是由语法表达式定义的变量;或通过由一定字词组成的语词表达式定义的变量)</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://wnqinm.cn">WnQinm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://wnqinm.cn/2022/10/23/fullstackp1/">http://wnqinm.cn/2022/10/23/fullstackp1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://wnqinm.cn" target="_blank">Qinm's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/net/">net</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">React 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6-Component"><span class="toc-text">组件-Component</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX"><span class="toc-text">JSX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E7%BB%84%E4%BB%B6-Multiple-components"><span class="toc-text">多个组件-Multiple components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0-props-passing-data-to-components"><span class="toc-text">参数-props: passing data to components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%8F%90%E7%A4%BA-Some-notes"><span class="toc-text">一些提示-Some notes</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">JavaScript</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F-Variables"><span class="toc-text">变量-Variables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84Arrays"><span class="toc-text">数组Arrays</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1-Objects"><span class="toc-text">对象-Objects</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background: black"><div id="footer-wrap"><div class="copyright">&copy;2022 By WnQinm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">醉后不知天在水，满船清梦压星河。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script></div></body></html>

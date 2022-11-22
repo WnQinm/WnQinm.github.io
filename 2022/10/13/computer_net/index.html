@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>计算机网络 | Qinm's blog</title><meta name="author" content="WnQinm"><meta name="copyright" content="WnQinm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="计算机网络基础知识总结:)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络">
+<meta property="og:url" content="http://wnqinm.cn/2022/10/13/computer_net/index.html">
+<meta property="og:site_name" content="Qinm&#39;s blog">
+<meta property="og:description" content="计算机网络基础知识总结:)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-13T05:58:47.000Z">
+<meta property="article:modified_time" content="2022-11-22T05:29:37.011Z">
+<meta property="article:author" content="WnQinm">
+<meta property="article:tag" content="net">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://wnqinm.cn/2022/10/13/computer_net/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Acme&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"bottom","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机网络',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-22 13:29:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Qinm's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机网络</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-13T05:58:47.000Z" title="发表于 2022-10-13 13:58:47">2022-10-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-22T05:29:37.011Z" title="更新于 2022-11-22 13:29:37">2022-11-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">web基础知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>网络层次划分</h1>
+<p>  为了使不同计算机厂家的计算机能够相互通信，以便在更大范围内建立计算机网络，国际标准化组织（ISO）在1978年提出了“开放系统互联参考模型”，即著名的OSI/RM模型（Open System Interconnection/Reference Model）。他将计算机网络体系结构的通信协议划分为七层，自下而上依次为：物理层（Physics Layer）、数据链路层（Data Link Layer）、网络层（Network Layer）、传输层（Transport Layer）、会话层（Session Layer）、表示层（Presentation Layer）、应用层（Application Layer）。其中第四次完成数据传送服务，上面三层面向用户。</p>
+<p>  除了标准的OSI七层模型以外，常见的网络层次划分还有TCP/IP四层协议以及TCP/IP五层协议，他们之间的对应关系如下图所示：</p>
+<div align=center><img src="https://tva1.sinaimg.cn/large/007Z9xVHgy1h73n3vpcboj30ku0d2dgu.jpg" alt style="height:auto;width:500px"/></div>
+<br>
+<h1>七层网络模型</h1>
+<p>TCP/IP协议毫无疑问是互联网的基础协议，没有它就根本不可能上网，任何和互联网有关的操作都离不开TCP/IP协议。不管是OSI七层模型还是TCP/IP的四层、五层模型，每一层中都要有自己的专属协议，完成自己相应的工作以及与上下层级之间进行沟通。由于OSI七层模型为网络的标准层次划分，所以我们以OSI七层模型为例从下向上进行一一介绍。</p>
+<div align=center><img src="https://tva2.sinaimg.cn/large/007Z9xVHgy1h73ndw7bo4g30tn0fvtc0.gif" alt="cnet2" width="600" height="auto"></div>
+<h2 id="物理层（Physical-Layer）">物理层（Physical Layer）</h2>
+<p>  激活、维持、关闭通信端点之间的机械特性、电气特性、功能特性以及过程特性。**该层为上层协议提供了一个传输数据的可靠的物理媒体。简单的说，物理层确保院士的数据可在各种物理媒体上传输。**物理层记住两个重要的设备名称，中继器（Repeater,也叫放大器）和集线器。</p>
+<h2 id="数据链路层（Data-Link-Layer）">数据链路层（Data Link Layer）</h2>
+<p>  数据链路层在物理层提供的服务的基础上向网络层提供服务，其最基本的服务时将源自网络层的数据可靠地传输到相邻节点的目标机网络层。为达到这一目的，数据链路必须具备一系列相应的功能，主要有：如何将数据组合成数据块，在数据链路层中称这种数据块为帧（frame），帧是数据链路层的传输单位；如何控制帧在物理信道上的传输，包括如何处理传输差错，如何调节发送速率以使与接收方匹配；以及在两个网络实体之间提供数据链路通路的建立、维持和释放的管理。数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用包括：物理地址寻址、数据的成帧、流量控制、数据的检错、重发等。</p>
+<blockquote>
+<p>有关数据链路层的重要知识点：</p>
+<ol>
+<li><strong>数据链路层为网络层提供可靠的数据传输</strong><br></li>
+<li><strong>基本数据单位为帧</strong><br></li>
+<li><strong>主要的协议：以太网协议</strong><br></li>
+<li><strong>两个重要设备名称：网桥和交换机</strong></li>
+</ol>
+</blockquote>
+<h2 id="网络层（Network-Layer）">网络层（Network Layer）</h2>
+<p>  网络层的目的是实现两个端系统之间的数据透明传送，具体功能包括寻址和路由选择、连接的建立、保持和终止等。它提供的服务使传输层不需要了解网络中的数据传输和交换技术。如果想用尽量少的词来记住网络层，那就是“路径选择、路由及逻辑寻址”。</p>
+<p>  网络层中涉及众多的协议，其中包括最重要的协议，也是TCP/IP的核心协议——IP协议。IP协议非常简单，仅仅提供不可靠、无连接的传送服务。IP协议的主要功能有：无连接数据报传输、数据报路由选择和差错控制。与IP协议配套使用实现其功能的还有地址解析协议ARP、逆地址解析协议RARP、因特网报文协议ICMP、因特网组管理协议IGMP。具体的协议我们会在接下来的部分进行总结。</p>
+<blockquote>
+<p>有关网络层的重点为：</p>
+<ol>
+<li><strong>网络层负责对子网间的数据包进行路由选择。此外，网络层还可以实现拥塞控制、网际互连等功能</strong></li>
+<li><strong>基本数据单位为IP数据报</strong></li>
+<li><strong>包含的主要协议：</strong> <br><br>
+  <strong>IP协议（Internet Protocol，因特网互联协议）</strong> <br><br>
+  <strong>ICMP协议（Internet Control Message Protocol，因特网控制报文协议）</strong> <br><br>
+  <strong>ARP协议（Address Resolution Protocol，地址解析协议）</strong> <br><br>
+  <strong>BARP协议（Reverse Address Resolution Protocol，你地址解析协议）</strong></li>
+<li><strong>重要的设备：路由器</strong></li>
+</ol>
+</blockquote>
+<h2 id="传输层（Transport-Layer）">传输层（Transport Layer）</h2>
+<p>  第一个端到端，即主机到主机的层次。传输层负责将上层数据分段并提供端到端的、可靠的或不可靠的传输。此外，传输层还要处理端到端的差错控制和流量控制问题。</p>
+<p>  传输层的任务是根据通信子网的特性，最佳的利用网络资源，为两个端系统好会话层之间，提供建立、维护和取消传输连接的功能，负责端到端的可靠数据传输。在这一次，信息传送的协议数据单元成为段或报文。</p>
+<p>  网络层知识根据网络地址将源结点发出的数据包传送到目的结点，而传输层则负责将数据可靠地传送到相应的端口。</p>
+<blockquote>
+<p><strong>有关传输层的重点</strong></p>
+<p><strong>1. 传输层负责将上层数据分段并提供端到端的、可靠的或不可靠的传输以及端到端的差错控制和流量控制问题</strong></p>
+<p><strong>2. 包含的主要协议：</strong> <br><br>
+  <strong>TCP协议（Transmission Control Protocol，传输控制协议）</strong> <br><br>
+  <strong>UDP协议（User Datagram Protocol，用户数据报协议）</strong></p>
+<p><strong>3. 重要设备：网关</strong></p>
+</blockquote>
+<h2 id="会话层">会话层</h2>
+<p>  会话层管理主机之间的会话进程，即负责建立、管理、终止进程之间的会话。会话层还利用在数据中插入校验点来实现数据的同步。</p>
+<h2 id="表示层">表示层</h2>
+<p>  表示层对上层数据或信息进行变换以保证一个主机应用层信息可以被另一个主机的应用程序理解。表示层的数据转换包括数据的加密、压缩、格式转换等。</p>
+<h2 id="应用层">应用层</h2>
+<p>  为操作系统或网络应用程序提供访问网络服务的接口。</p>
+<blockquote>
+<p><strong>会话层、表示层和应用层重点：</strong></p>
+<p><strong>1. 数据传输基本单位为报文</strong></p>
+<p><strong>2.包含的主要协议：</strong> <br><br>
+  <strong>FTP（文件传送协议）、Telnet（远程登录协议）、DNS（域名解析协议）、SMTP（邮件传送协议）、POP3协议（邮局协议）、HTTP协议（Hyper Text Transfer Protocol）。</strong></p>
+</blockquote>
+<h1>IP地址</h1>
+<h2 id="网络地址">网络地址</h2>
+<p>  IP地址由网络号（包括子网号）和主机号组成，网络地址的主机号为全0，网络地址代表着整个网络。网络号长度有八位、十六位、二十四位，即ip地址最后的/8,/16,/24。</p>
+<p>  譬如192.168.0.0/16，前16位是网络号，是定死的；后16位是主机号，用于给每个主机分配的。</p>
+<h2 id="广播地址">广播地址</h2>
+<p>  广播地址通常称为直接广播地址，是为了区分受限广播地址。</p>
+<p>  广播地址与网络地址的主机号正好相反，广播地址中，主机号为全1.当向某个网络的广播地址发送消息时，该网络内的所有主机都能收到该广播消息。</p>
+<h2 id="组播地址">组播地址</h2>
+<p>D类地址就是组播地址</p>
+<p>A、B、C、D类地址：</p>
+<p>  A类地址以0开头，第一个字节作为网络号，地址范围为：0.0.0.0~127.255.255.255;</p>
+<p>  B类地址以10开头，前两个字节作为网络号，地址范围是：128.0.0.0~191.255.255.255;</p>
+<p>  C类地址以110开头，前三个字节作为网络号，地址范围是：192.0.0.0~233.255.255.255;</p>
+<p>  D类地址以1110开头，地址范围是224.0.0.0~239.255.255.255，D类地址作为组播地址（一对多的通信）;</p>
+<p>  E类地址以1111开头，地址范围是240.0.0.0~255.255.255.255，E类地址为保留地址，供以后使用</p>
+<p>  <strong>注</strong>：只有A,B,C有网络号和主机号之分，D类地址和E类地址没有划分网络号和主机号。</p>
+<h2 id="255-255-255-255">255.255.255.255</h2>
+<p>  该IP地址指的是受限的广播地址。受限广播地址与一般广播地址（直接广播地址）的区别在于，受限广播地址只能用于本地网络，路由器不会转发以受限广播地址为目的地址的分组；一般广播地址既可在本地广播，也可夸网段广播。例如：主机192.168.1.1/30上的直接广播数据报后，另外一个网段192.168.1.5/30也能收到该数据报；若发送受限广播数据报，则不能收到。</p>
+<p>  <strong>注</strong>：一般的广播地址（直接广播地址）能够通过某些路由器（当然不是所有的路由器），而受限的广播地址不能通过路由器。</p>
+<h2 id="0-0-0-0">0.0.0.0</h2>
+<p>  常用于寻找自己的IP地址，例如在我们的RARP，BOOTP和DHCP协议中，若某个未知IP地址的无盘机想要知道自己的IP地址，他就以255.255.255.255为目的地址，向本地范围（具体而言是被各个路由器屏蔽的范围内）的服务器发送IP请求分组。</p>
+<h2 id="回环地址">回环地址</h2>
+<p>  127.0.0.0/8被用作回环地址，回环地址表示本机的地址，常用于对本机的测试，用的最多的是127.0.0.1</p>
+<h2 id="A、B、C类私有地址">A、B、C类私有地址</h2>
+<p>  私有地址(private address)也叫专用地址，它们不会在全球使用，只具有本地意义。</p>
+<p>  A类私有地址：10.0.0.0/8，范围是：10.0.0.0~10.255.255.255</p>
+<p>  B类私有地址：172.16.0.0/12，范围是：172.16.0.0~172.31.255.255</p>
+<p>  C类私有地址：192.168.0.0/16，范围是：192.168.0.0~192.168.255.255</p>
+<h1>子网掩码及网络划分</h1>
+<p>  随着互联网应用的不断扩大，原先的IPv4的弊端也逐渐暴露出来，即网络号占位太多，而主机号位太少，所以其能提供的主机地址也越来越稀缺，目前除了使用的NAT在企业内部利用保留地址自行分配以外，通常都对一个高类别的IP地址进行再划分，以形成多个子网，提供给不同规模的用户群使用。</p>
+<p>  这里主要是为了在网络分段情况下有效地利用IP地址，通过对主机号的高位部分取作子网号，从通常的网络位界限中扩展或压缩子网编码，</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://wnqinm.cn">WnQinm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://wnqinm.cn/2022/10/13/computer_net/">http://wnqinm.cn/2022/10/13/computer_net/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://wnqinm.cn" target="_blank">Qinm's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/net/">net</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">网络层次划分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">七层网络模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%EF%BC%88Physical-Layer%EF%BC%89"><span class="toc-text">物理层（Physical Layer）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%EF%BC%88Data-Link-Layer%EF%BC%89"><span class="toc-text">数据链路层（Data Link Layer）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%EF%BC%88Network-Layer%EF%BC%89"><span class="toc-text">网络层（Network Layer）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%EF%BC%88Transport-Layer%EF%BC%89"><span class="toc-text">传输层（Transport Layer）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E5%B1%82"><span class="toc-text">会话层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E7%A4%BA%E5%B1%82"><span class="toc-text">表示层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-text">应用层</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">IP地址</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80"><span class="toc-text">网络地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BF%E6%92%AD%E5%9C%B0%E5%9D%80"><span class="toc-text">广播地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E6%92%AD%E5%9C%B0%E5%9D%80"><span class="toc-text">组播地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#255-255-255-255"><span class="toc-text">255.255.255.255</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-0-0-0"><span class="toc-text">0.0.0.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E7%8E%AF%E5%9C%B0%E5%9D%80"><span class="toc-text">回环地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A%E3%80%81B%E3%80%81C%E7%B1%BB%E7%A7%81%E6%9C%89%E5%9C%B0%E5%9D%80"><span class="toc-text">A、B、C类私有地址</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">子网掩码及网络划分</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background: black"><div id="footer-wrap"><div class="copyright">&copy;2022 By WnQinm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">醉后不知天在水，满船清梦压星河。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script></div></body></html>
