@@ -4,6 +4,83 @@
   
     
     <entry>
+      <title>设置Powershell、git/cmd走代理</title>
+      <link href="/2023/01/25/SetTerminalAgent/"/>
+      <url>/2023/01/25/SetTerminalAgent/</url>
+      
+        <content type="html"><![CDATA[<p>开始尝试在Windows电脑使用scoop进行软件管理，但是在下载bucket时常常超时或报错，最终发现是powershell没有走代理，导致无法流畅访问github。本文旨在记录解决方式。<a href="https://www.yixuju.cn/other/talking-about-proxy/">来源</a></p><h1>前置提醒</h1><p>建议在代理设置页面开启允许局域网连接，这个比较玄学，我也不太懂，偶尔报错https协议、偶尔报错超时、或者报错其他，反正就是点一下的事，开了之后似乎成功率比较高。</p><h1>设置代理</h1><blockquote><p>根据如下方法会永久设置powershell走代理，如果想暂时设置走代理，将要输入在记事本中的两行代码依次输入在powershell命令行中即可</p></blockquote><p>在<code>powershell</code>窗口运行如下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (!(Test-Path -Path $PROFILE )) &#123; New-Item -Type File -Path $PROFILE -Force &#125;</span><br><span class="line">notepad $PROFILE</span><br></pre></td></tr></table></figure><p>会弹出记事本，输入如下命令，并将<code>your_agent_proxy</code>更换为代理占用的端口：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$Env:http_proxy=&quot;http://127.0.0.1:your_agent_proxy&quot;;</span><br><span class="line">$Env:https_proxy=&quot;http://127.0.0.1:your_agent_proxy&quot;;</span><br></pre></td></tr></table></figure><p>上面的配置文件在<code>此电脑\文档\WindowsPowerShell</code>下，文件名为<code>Microsoft.PowerShell_profile.ps1</code>，这个文件的内容会在每次powershell运行时使用。</p><h1>关于git/cmd</h1><p>后面的内容我没有试验过，谨慎使用。</p><h2 id="git设置代理">git设置代理</h2><p>如果你开始使用git，下面代码的具体使用方法不必多说；如果你没有使用过git，请先找个教程学习git基本用法。</p><p>设置方法（将<code>your_agent_proxy</code>更换为代理占用的端口）：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global https.proxy http://127.0.0.1:your_agent_proxy</span><br><span class="line">git config --global https.proxy https://127.0.0.1:your_agent_proxy</span><br></pre></td></tr></table></figure><p>取消方法：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure><h2 id="cmd设置代理">cmd设置代理</h2><ol><li>新建一个<code>cmd_init.cmd</code>，输入如下命令：</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy=http://127.0.0.1:7890</span><br><span class="line">set https_proxy=http://127.0.0.1:7890</span><br></pre></td></tr></table></figure><ol start="2"><li>打开注册表：<code>win+R</code> -&gt; 输入 <code>regedit</code> 后运行</li><li>找到<code>HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\</code>，在文件夹下，新建字符串值<code>AutoRun</code>，数据的值是一个绝对路径，路径指向新建的<code>cmd_init.cmd</code>，可以将这个文件放在 C 盘根目录，即路径为<code>C:\cmd_init.cmd</code></li><li>重新打开终端，你会看到命令行会先运行这两条命令，而不需要你自己输入</li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> net </tag>
+            
+            <tag> windows </tag>
+            
+            <tag> terminal </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数据结构-第一章</title>
+      <link href="/2023/01/24/DataStructure1/"/>
+      <url>/2023/01/24/DataStructure1/</url>
+      
+        <content type="html"><![CDATA[<h1>1.1数据结构基本概念</h1><h2 id="名词解释">名词解释</h2><ul><li>数据：数据是信息的载体</li><li>数据元素：数据的基本单位，通常作为一个整体进行考虑和处理</li><li>数据项：一个数据元素可由若干数据项组成，数据项是构成数据元素的不可分割的最小单位</li></ul><p>eg.海底捞顾客取号，某一波顾客这一个整体是数据元素，他们取号的号票、取号时间、就餐人数等信息是数据项</p><ul><li><p>结构：各个元素之间的关系</p></li><li><p>数据结构：相互之间存在一种或多种特定关系的数据元素的集合</p></li><li><p>数据对象：具有相同性质的数据元素的集合，是数据的一个子集</p></li><li><p>数据类型：一个值的集合和定义在此集合上的一组操作的总称</p><ul><li>原子类型：其值不可再分的类型</li><li>结构类型：其值可以再分解为若干成分的数据类型（结构体）</li></ul></li><li><p>抽象数据类型（ADT）：是抽象数据组织及与之相关的操作。用数学化的语言定义数据的逻辑结构、定义运算，与具体的物理实现无关。</p></li></ul><h2 id="数据结构三要素">数据结构三要素</h2><p>指讨论一种数据结构时要关注的三个方面</p><h3 id="逻辑结构">逻辑结构</h3><p>数据元素之间的逻辑关系</p><h4 id="集合">集合</h4><p>和数学的集合同一概念</p><h4 id="线性结构">线性结构</h4><p>数据元素之间是一对一的关系<br>所有元素都有唯一前驱（除了第一个元素）和唯一后驱（除了最后一个元素）</p><h4 id="树形结构">树形结构</h4><p>数据元素之间是一对多的关系</p><h4 id="图结构">图结构</h4><p>数据元素之间是多对多的关系（eg.微信用户的结构）</p><h3 id="物理结构（存储结构）">物理结构（存储结构）</h3><p>如何用计算机表示数据元素的逻辑关系</p><h4 id="线性结构-2">线性结构</h4><ul><li>顺序存储：把逻辑上相邻的元素存储在物理位置上也相邻的存储单元中，元素之间的关系由存储单元的邻接关系来体现（连续的存储空间）</li><li>链式存储：逻辑上相邻的元素在物理位置上可以不相邻，借助指示元素存储地址的指针来表示元素之间的逻辑关系（链表）</li><li>索引存储：在存储元素信息的同时，还建立附加的索引表。索引表的每项成为索引项，索引项的一般形式是（关键字，地址）</li><li>散列存储：根据元素的关键字直接计算出该元素的存储地址，又称哈希（Hash）存储</li></ul><h3 id="数据的运算">数据的运算</h3><p>施加在数据上的运算包括运算的定义和实现。运算的定义是针对逻辑结构的，支出运算的功能；运算的实现是针对存储结构的，指出运算的具体操作步骤。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> cs </tag>
+            
+            <tag> DataStructure </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>操作系统-第一章</title>
+      <link href="/2023/01/23/os1/"/>
+      <url>/2023/01/23/os1/</url>
+      
+        <content type="html"><![CDATA[<h1>1.1-1 操作系统的概念、功能与目标!</h1><h2 id="操作系统的概念（定义）">操作系统的概念（定义）</h2><p>操作系统（Operating System）是指控制和管理整个计算机系统的硬件和软件资源，并合理地组织调度计算机的工作和资源分配，以提供给用户和其他软件方便的接口和环境，他是计算机系统中最基本的系统软件。</p><img src="https://wnqinm-blog-img.oss-cn-shanghai.aliyuncs.com/img/操作系统1.1-1-1.png" alt="计算机系统的层次结构" style="zoom: 50%;" /><h2 id="操作系统的功能和目标">操作系统的功能和目标</h2><h3 id="系统资源的管理者">系统资源的管理者</h3><ul><li>进程：是一个程序的执行过程。执行前需要将该程序放到内存中，才能被CPU处理。</li></ul><p>提供的功能：处理机（CPU）管理，存储器管理，文件管理，设备管理<br><br>目标：安全、高效</p><p>eg.QQ和朋友聊天</p><ol><li>在文件夹中找到QQ安装的位置（文件管理）</li><li>双击打开QQ（存储器管理）</li><li>QQ程序正常运行（处理机管理）</li><li>开始和朋友视频聊天（设备管理）</li></ol><h3 id="用户和计算机硬件之间的接口">用户和计算机硬件之间的接口</h3><h4 id="命令接口">命令接口</h4><p>允许用户直接使用</p><ul><li>联机命令接口：交互式命令接口（cmd、powershell等）</li><li>脱机命令接口：批处理命令接口（<em>.bat批处理文件、</em>.sh shell脚本等）</li></ul><h4 id="程序接口">程序接口</h4><p>如C:\Windows\System32\user32.dll 某些程序中会调用 user32.dll （该调用过程即为系统调用）实现创建窗口等功能。只能通过用户程序间接使用。</p><p>由一组系统调用组成（程序接口=系统调用）<br><br>注意：系统调用=系统调用指令=广义指令</p><h3 id="GUI-CLI">GUI/CLI</h3><p>图形用户界面/命令行界面</p><h3 id="作为最接近硬件的层次">作为最接近硬件的层次</h3><p>需要提供的功能和目标：实现对硬件机器的拓展</p><p>裸机：没有任何软件支持的计算机</p><p>在裸机上安装的操作系统，可以提供资源管理功能和方便用户的服务功能，将裸机改造成功能更强、使用更方便的机器。</p><p>通常吧覆盖了软件的机器称为扩充机器，又称为虚拟机。</p><img src="https://wnqinm-blog-img.oss-cn-shanghai.aliyuncs.com/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1.1-1.png" alt="操作系统1.1-1" style="zoom: 33%;" /><h1>1.1-2 操作系统的特征</h1><h2 id="并发">并发</h2><p>指两个或多个事件在同一时间间隔内发生。这些时间宏观上是同时发生的，但微观上是交替发生的。</p><p>【易混概念】并行：指两个或多个事件在同一时刻同时发生</p><p>操作系统的并发性：计算机系统中同时存在着多个运行着的程序</p><p>一个单核处理机（CPU）同一时刻只能执行一个程序，因此操作系统会负责协调多个程序交替进行（这些程序微观上是交替进行的，但宏观上看起来就像是在同时进行）。操作系统和程序并发是一起诞生的。</p><p>n核CPU就是同一时刻可以有n个程序并行执行，但是操作系统的并发性依然比不可少，同一时刻要运行的不仅仅有用户的软件（qq，微信，浏览器等），还有一系列系统运行的必须进程。</p><h2 id="共享">共享</h2><p>即资源共享，是指系统中的资源可供内存中多个并发执行的进程共同使用。</p><p>资源共享可分为两种共享方式：</p><h3 id="互斥共享方式">互斥共享方式</h3><p>一个时间段内只允许一个进程访问资源。譬如电脑摄像头资源</p><h3 id="同时共享方式">同时共享方式</h3><p>允许一个时间段内由多个进程“同时”对它们进行访问</p><p>（所谓的“同时”往往是宏观上的，而在微观上，这些进程可能是交替地、并发地对该资源进行访问的，即分时共享）</p><h2 id="并发和共享的关系">并发和共享的关系</h2><p>并发性指计算机系统中同时存在着多个运行的程序。<br><br>共享性是指系统中的资源可供内存中多个并发执行的进程共同使用。</p><p>如果失去并发性，则系统中只有一个程序正在运行，则共享性失去存在的意义。<br><br>如果失去共享性，则两个应用程序不能同时访问硬盘资源，就无法并发。</p><h2 id="虚拟">虚拟</h2><p>指把一个物理上的实体变为若干个逻辑上的对应物。物理实体是实际存在的，而逻辑上的对应物是用户感受到的。</p><p>譬如某个游戏需要8g运行内存，如果一个8g内存电脑运行该游戏，是可以正常游玩的，不仅如此，游玩的同时电脑后台还可以同时挂着qq微信等应用。<br><br>使用了虚拟存储器技术（虚拟技术中的空分复用技术），使得在用户端看来电脑运行内存远远大于8g。</p><p>单核CPU可以同时运行多个程序，是虚拟处理器技术（虚拟技术中的时分复用技术），在用户端看来似乎是一个多核CPU。</p><h2 id="异步">异步</h2><p>在多道程序环境下，允许多个程序并发执行，但由于资源有限，进程的执行不是一贯到底的，而是走走停停，以不可预知的速度向前推进，这就是进程的异步性。</p><img src="https://wnqinm-blog-img.oss-cn-shanghai.aliyuncs.com/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1.1-2.png" alt="操作系统1.1-2" style="zoom:33%;" /><h1>1.1-3操作系统的发展与分类</h1><h2 id="手工操作阶段">手工操作阶段</h2><p>人工将二进制编码以打孔的形式输入计算机，处理后返回数据</p><p>缺点：用户独占全机，人机速度矛盾导致资源利用率极低</p><h2 id="批处理阶段——单道批处理系统">批处理阶段——单道批处理系统</h2><p>引入 脱机输入/输出技术 （用磁带完成），并监督程序负责控制作业的输入、输出。</p><p>同样是手工打孔，但是先将信息输入磁带，再由磁带输入计算机（该过程由监督程序负责控制，速度更快）。</p><p>优点：一定程度缓解了人机速度矛盾，资源利用率有所提升。<br><br>缺点：内存中仅能有一道程序运行，只有该程序运行结束之后才能调入下一道程序。CPU有大量时间是在空闲时间等待I/O完成。资源利用率依然很低。</p><h2 id="批处理阶段——多道批处理系统">批处理阶段——多道批处理系统</h2><p>每次从磁带往内存中输入多道程序，各个程序并发执行。</p><p>操作系统正式诞生，并引入了中断技术，由操作系统负责管理这些程序的运行，各个程序并发执行。</p><p>优点：多道程序并发执行，共享计算机资源，资源利用率大幅提升，CPU和其他资源保持“忙碌”状态，系统吞吐量增大。<br><br>缺点：用户响应时间长，没有人机交互功能（用户提交自己的作业之后就只能等待计算机处理完成，中间不能控制自己的作业执行）</p><p>为何多道批处理系统能使资源利用率大幅提升？</p><img src="https://wnqinm-blog-img.oss-cn-shanghai.aliyuncs.com/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1.1-3-1.png" alt="操作系统1.1-3-1" style="zoom:33%;" /><img src="https://wnqinm-blog-img.oss-cn-shanghai.aliyuncs.com/img/操作系统1.1-3-2.png" alt="操作系统1.1-3-2" style="zoom:33%;" /><h2 id="分时操作系统">分时操作系统</h2><p>计算机以时间片为单位轮流为各个用户/作业服务，各个用户可通过终端与计算机进行交互。</p><p>注：时间片以ms为单位，即计算机并发地为多个用户“同时”服务。</p><p>优点：用户请求可以被即时响应，解决了人机交互问题。允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在。<br>缺点：不能优先处理一些紧急任务，操作系统对各个用户/作业都是完全公平的，循环地为每个用户/作业服务一个时间片，不区分任务的紧急性。</p><h2 id="实时操作系统">实时操作系统</h2><p>优点：能够优先相应一些紧急的任务，某些紧急任务不需时间片排队。</p><p>在实时操作系统的控制下，计算机系统接收到外部信号后及时进行处理，并且要在严格的时限内处理完事件。</p><p>实时操作系统的主要特点是及时性和可靠性</p><h3 id="硬实时系统">硬实时系统</h3><p>必须在绝对严格的规定时间内完成处理（导弹控制系统，自动驾驶系统）</p><h3 id="软实时系统">软实时系统</h3><p>能接受偶尔违反时间规定（12306火车订票系统）</p><h2 id="其他操作系统">其他操作系统</h2><h3 id="网络操作系统">网络操作系统</h3><p>能把网络中各个计算机有机地结合起来，实现数据传送等功能，实现网络中各种资源的共享（如文件共享）和各台计算机之间的通信。 （如：Windows NT就是一种典型的网络操作系统，网站服务器就可以使用）</p><h3 id="分布式操作系统">分布式操作系统</h3><p>主要特点是分布性和并行性。系统中的各台计算机地位相同，任何工作都可以分布在这些计算机上，由它们并行、协同完成这个任务。</p><h3 id="个人计算机操作系统">个人计算机操作系统</h3><p>方便个人使用。Windows 10、MacOS、Linux等。</p><img src="https://wnqinm-blog-img.oss-cn-shanghai.aliyuncs.com/img/操作系统1.1-3.png" alt="操作系统1.1-3" style="zoom: 33%;" /><h1>1.1-4 操作系统的运行机制与体系结构</h1><h2 id="运行机制">运行机制</h2><h3 id="两种指令">两种指令</h3><p>编程语言通过编译器编译后会对应多条指令。</p><p>“指令”就是处理器（CPU）能识别、执行的最基本的命令</p><p>指令有普通的运算指令等无害的指令，也有内存清零指令等可能会危害数据安全的指令。无害的指令为非特权指令，有风险的指令为特权指令。</p><h3 id="两种处理器状态">两种处理器状态</h3><p>为了判断当前是否可以执行特权指令，规定了两种处理器状态：用户态（目态），此时CPU只能执行非特权指令；核心态（管态），特权指令、非特权指令都可执行。用程序状态字寄存器（PSW）中的某标志位来标识当前处理器处于什么状态（如0为用户态，1为核心态）。</p><h3 id="两种程序">两种程序</h3><p>对应将程序分为：内核程序，是系统的管理者，既可以执行特权指令，也可以执行非特权指令，运行在核心态；应用程序，为了保证系统能安全运行，普通应用程序只能执行非特权指令，运行在用户态。</p><h2 id="操作系统的体系结构">操作系统的体系结构</h2><p>内核：是计算机上配置的底层软件，是操作系统最基本、最核心的部分<br><br>内核程序：实现操作系统内核功能的那些程序就是内核程序</p><img src="https://wnqinm-blog-img.oss-cn-shanghai.aliyuncs.com/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1.1-4-1.png" alt="操作系统1.1-4-1" style="zoom:50%;" /><p>时钟管理：实现计时的功能<br><br>中断处理：负责实现中断机制<br><br>原语：是一种特殊的程序，处于操作系统最底层，是最接近硬件的部分，这种程序的运行具有原子性（其运行只能一气呵成，不可中断），运行时间较短、调用频繁</p><p>上述三种是与硬件关联较紧密的模块</p><p>对于进程管理、存储器管理、设备管理，有的操作系统不把这部分功能归为“内核功能”，也就是说不同的操作系统，对内核功能的划分可能并不一样</p><p>由此引出了大内核和微内核：</p><img src="https://wnqinm-blog-img.oss-cn-shanghai.aliyuncs.com/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1.1-4-2.png" alt="操作系统1.1-4-2" style="zoom: 67%;" /><p>大内核：将操作系统的主要功能模块都作为系统内核，运行在核心态<br><br>微内核：只把最基本的功能保留在内核</p><img src="https://wnqinm-blog-img.oss-cn-shanghai.aliyuncs.com/img/操作系统1.1-4.png" alt="操作系统1.1-4" style="zoom: 67%;" /><h1>1.1-5 中断和异常</h1><h2 id="中断机制的诞生">中断机制的诞生</h2><p>古早计算机同一时间只能处理一道程序，而且需要等待I/O结束后才能运行下一个程序</p><p>为了解决上述问题，发明了操作系统（作为计算机的管理者），引入中断机制，实现了多道程序并发执行</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">例子：</span><br><span class="line"></span><br><span class="line">现有多道程序输入计算机并发执行：</span><br><span class="line"></span><br><span class="line">进程1在用户态下运行，运行了一个时间片后，CPU收到计时部件发出的中断信号，切换为核心态，并将CPU使用权限交给操作系统，操作系统内核负责对中断信号进行处理：进程1的时间片已用完，换进程2运行。操作系统将CPU使用权交还给用户进程。</span><br><span class="line"></span><br><span class="line">进程2在用户态下运行，运行一段时间后，发出系统调用（内中断信号），请求输出。CPU切换为核心态，操作系统对中断进行处理。操作系统按照进程2的请求，要求打印机进行工作，进程2暂停运行等待I/O完成，换进程3运行。cpu使用权交还用户进程。</span><br><span class="line"></span><br><span class="line">进程3开始工作，同时打印设备并行工作，打印设备工作完成后会向CPU发送一个I/O完成的中断信号，切换为核心态，操作系统处理，接收到进程2的I/O操作完成，让进程2恢复运行，以完成后续工作，CPU使用权交还用户进程，继续进行进程2。</span><br></pre></td></tr></table></figure><h2 id="中断的概念和作用">中断的概念和作用</h2><ol><li>当中断发生时，CPU立即进入核心态</li><li>当中断发生后，当前运行的进程暂停运行，并有操作系统内核对中断进行处理</li><li>对于不同的中断信号，会进行不同的处理</li></ol><p>发生了中断 ，就意味着需要操作系统接入，开展管理工作。由于操作系统的管理工作（比如进程切换、分配I/O设备等）需要使用特权指令，因此CPU要从用户态转为核心态。</p><p>中断可以使CPU从用户态切换为核心态，使操作系统获得计算机的控制权。有了中断，才能实现多道程序并发执行。</p><p>用户态 - 核心态 的唯一途径是中断。<br><br>核心态 - 用户态 的途径是执行一个特权指令，将程序状态字（PSW）的标志位设置为“用户态”。</p><h2 id="中断的分类">中断的分类</h2><p><img src="https://wnqinm-blog-img.oss-cn-shanghai.aliyuncs.com/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1.1-5-1.png" alt="操作系统1.1-5-1"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> cs </tag>
+            
+            <tag> os </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基于frp内网穿透</title>
       <link href="/2022/11/08/NATfrp/"/>
       <url>/2022/11/08/NATfrp/</url>
